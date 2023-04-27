@@ -24,6 +24,9 @@
 
 ### Start em containers docker, do projeto
     $ ./vendor/bin/sail up -d
+
+### Você pode criar um alias para o comando do sail adicionando a seguinte linha no seu arquivo ```~/.bashrc```
+    $ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
     
 ### Resultará em três contêineres do Docker em execução:
     - PostgreeSQL
