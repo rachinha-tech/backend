@@ -3,28 +3,27 @@
 namespace App\Actions;
 
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthStore
 {
-    public function handle(): JsonResponse
+    public function handle(): array
     {
         $googleUser = Socialite::driver('google')->stateless()->user();
 
-        $existingUser = User::where('email', $googleUser->getEmail())->first();
+        $existingUser = User::where('google_id', $googleUser->id)->first();
 
         if ($existingUser) {
             Auth::login($existingUser);
 
-            $accessToken = $existingUser->createToken('authToken')->accessToken;
+            $accessToken = $existingUser->createToken('authToken');
 
-            return response()->json([
-                'access_token' => $accessToken,
-            ]);
-
+             return [
+                'token' => $accessToken->plainTextToken,
+                'user' => Auth::authenticate()
+            ];
         }
 
         $newUser = User::create([
@@ -33,16 +32,16 @@ class AuthStore
             'email' => $googleUser->email,
             'password' => bcrypt(Str::random(40)),
             'picture' => $googleUser->avatar,
-            'token' => $googleUser->token,
             'active' => true
         ]);
 
         Auth::login($newUser);
 
-        $accessToken = $newUser->createToken('authToken')->accessToken;
+        $accessToken = $newUser->createToken('authToken');
 
-        return response()->json([
-            'access_token' => $accessToken,
-        ]);
+        return [
+            'token' => $accessToken->plainTextToken,
+            'user' => Auth::authenticate()
+        ];
     }
 }

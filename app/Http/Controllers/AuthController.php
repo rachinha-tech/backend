@@ -5,18 +5,18 @@ namespace App\Http\Controllers;
 use App\Actions\AuthStore;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse as RedirectResponseHTTP;
 use Laravel\Socialite\Facades\Socialite;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
     use ApiResponse;
 
-    public function redirectToProvider(): RedirectResponseHTTP|RedirectResponse
+    public function redirectToProvider(): JsonResponse
     {
-        return Socialite::driver('google')->redirect();
+        return \Illuminate\Support\Facades\Response::json([
+            'url' => Socialite::driver('google')->stateless()->redirect()->getTargetUrl(),
+        ]);
     }
     public function handleProviderCallback(AuthStore $authStore): JsonResponse
     {
