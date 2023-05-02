@@ -9,16 +9,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/auth')->group(function () {
     Route::get('/redirect', [AuthController::class, 'redirectToProvider']);
+    Route::get('/callback', [AuthController::class, 'handleProviderCallback']);
 });
-
-
-//Route::group(['middleware' => ['api']], function () {
-//    // your routes here
-//    Route::get('/home', [AuthController::class, 'handleProviderCallback']);
-//});
-
-
-//Route::prefix('/location')->group(function () {
-//    Route::get('/', [LocationController::class, 'index']);
-//    Route::post('/', [LocationController::class, 'store']);
-//});

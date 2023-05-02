@@ -7,8 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::prefix('/auth')->group(function () {
-    Route::get('/redirect', [AuthController::class, 'redirectToProvider']);
-    Route::get('/callback', [AuthController::class, 'handleProviderCallback']);
-});
+Route::get('/auth/redirect', [AuthController::class, 'redirectToProvider'])->middleware('web');
+Route::get('/auth/callback', [AuthController::class, 'handleProviderCallback'])->middleware('web');
