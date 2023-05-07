@@ -25,7 +25,7 @@ class UserController extends Controller
         } catch (\DomainException $domainException) {
             return $this->error($domainException->getMessage(), $domainException->getCode());
         } catch (\Exception) {
-            return $this->error('Erro ao listr informações de usuário.', Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->error('Erro ao listar informações de usuário.', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -48,8 +48,8 @@ class UserController extends Controller
             return $this->success('Informações atualizadas com sucesso!', $user);
         } catch (\DomainException $domainException) {
             return $this->error($domainException->getMessage(), $domainException->getCode());
-        } catch (\Exception) {
-            return $this->error('Erro ao atulizar informações.', Response::HTTP_INTERNAL_SERVER_ERROR);
+        } catch (\Exception $exception) {
+            return $this->error('Erro ao atualizar informações.'.$exception, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 

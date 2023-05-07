@@ -12,6 +12,7 @@ class RegisterUser
     {
         $user = User::query()->create([
             'email' => $data['email'],
+            'login' => $data['login'],
             'name' => $data['name'],
             'date_birth' => $data['date_birth'],
             'picture' => $data['picture'],

@@ -2,13 +2,13 @@
 
 namespace App\Actions\User;
 
+use App\Http\Resources\User\UserResource;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpFoundation\Response;
 
 class ShowUser
 {
-    public function handle(int $id): Model
+    public function handle(int $id): UserResource
     {
         $user = User::query()->find($id);
 
@@ -16,6 +16,6 @@ class ShowUser
             throw new \DomainException('Usuário não encontrado', Response::HTTP_NOT_FOUND);
         }
 
-        return $user;
+        return UserResource::make($user);
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Actions\User;
 
+use App\Http\Resources\User\UserResource;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpFoundation\Response;
 
 class LevelUser
 {
-    public function handle(int $id, array $data): Model
+    public function handle(int $id, array $data): UserResource
     {
         $user = User::query()->where('id', $id)->first();
 
@@ -22,6 +22,6 @@ class LevelUser
 
         $user->update($data);
 
-        return $user;
+        return UserResource::make($user);
     }
 }
