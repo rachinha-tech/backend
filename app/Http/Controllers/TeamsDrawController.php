@@ -16,8 +16,10 @@ class TeamsDrawController extends Controller
     {
         try {
             return $this->success('Sorteio realizado!', $teamsDraw->handle($request->validated()));
-        } catch (\Exception $exception) {
-            return $this->error('Erro ao sortear equipes.'.$exception, Response::HTTP_INTERNAL_SERVER_ERROR);
+        } catch (\DomainException $domainException) {
+            return $this->error($domainException->getMessage(), $domainException->getCode());
+        } catch (\Exception) {
+            return $this->error('Erro ao sortear equipes.', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }
