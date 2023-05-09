@@ -2,29 +2,50 @@
 
 namespace App\Actions\TeamsDraw;
 
+use App\Models\Modality;
+use Symfony\Component\HttpFoundation\Response;
+
 class ListTeamsDraw
 {
-    public array $teams = [
-        'one' => [],
-        'two' => [],
-    ];
-
     public function handle(array $data): array
     {
-        shuffle($data);
+        $quantityTeams = $data['quantity_teams'];
+        $teams = [];
 
-        $limit = count($data)/2;
-
-        if(count($this->teams['one']) < $limit) {
-            $one = array_slice($data, 0, $limit);
-            array_push($this->teams['one'], $one);
+        if (!$quantityTeams) {
+            throw new \DomainException('É necessário informar a quntidade de teams.', Response::HTTP_FORBIDDEN);
         }
 
-        if (count($this->teams['two']) < $limit) {
-            $two = array_slice($data, $limit, 8);
-            array_push($this->teams['two'], $two);
+        if (!$data['modality_id']) {
+            throw new \DomainException('É necessário informar uma modalidade.', Response::HTTP_FORBIDDEN);
         }
 
-        return $this->teams;
+        $quantityPlayersTeam = Modality::query()
+            ->where('id', $data['modality_id'])
+            ->first();
+
+        for ($i = 0; $i < $quantityTeams; $i++) {
+            $teams[] = array();
+        }
+
+        shuffle($data['players']);
+
+        // itera sobre cada time
+        for ($i = 0; $i < $quantityTeams; $i++) {
+            // adiciona jogadores ao time atual até que ele alcance a quantidade desejada
+            while (count($teams[$i]) < $quantityPlayersTeam->quantity_players) {
+                // pega o próximo jogador disponível
+                $player = array_shift($data['players']);
+                // adiciona o jogador ao time atual
+                array_push($teams[$i], $player);
+                // se o array de jogadores estiver vazio, sai do loop
+                if (empty($data['players'])) {
+                    break;
+                }
+            }
+        }
+
+        return $teams;
+
     }
 }
