@@ -32,6 +32,14 @@
     - PostgreeSQL
     - Redis
     - Laravel
-    
+   
+### Executar migrate
+
+    sail artisan migrate
+
+### Executar seeders
+
+    sail artisan db:seed
+ 
 ## Versão
     - 0.0.3
