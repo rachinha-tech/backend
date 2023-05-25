@@ -18,7 +18,7 @@ class EventStoreRequest extends FormRequest
             'name' => 'required|string',
             'type' => ['required', Rule::in(['amistoso', 'rachinha'])],
             'local_id' => 'required|integer',
-//            'schedule_id' => 'required|integer',
+            'schedule_id' => 'required|integer',
             'description' => 'string',
         ];
     }
