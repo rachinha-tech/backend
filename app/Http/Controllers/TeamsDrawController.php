@@ -12,7 +12,7 @@ class TeamsDrawController extends Controller
 {
     use ApiResponse;
 
-    public function index(TeamsDrawRequest $request, ListTeamsDraw $teamsDraw): JsonResponse
+    public function store(TeamsDrawRequest $request, ListTeamsDraw $teamsDraw): JsonResponse
     {
         try {
             return $this->success('Sorteio realizado!', $teamsDraw->handle($request->validated()));
