@@ -7,9 +7,9 @@ use App\Http\Controllers\ModalityController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TeamsDrawController;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\ValidateAuthTokenController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [RegisterController::class, 'register']);
@@ -25,7 +25,7 @@ Route::prefix('modalities')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('user')->group(function () {
-        Route::get('/profile', ValidateAuthTokenController::class);
+        Route::get('/profile', ProfileController::class);
 
         Route::get('/{id}', [UserController::class, 'show']);
         Route::put('/{id}', [UserController::class, 'update']);
