@@ -35,10 +35,15 @@ class AuthController extends Controller
     public function destroy(): JsonResponse
     {
         try {
-            Auth::user()->currentAccessToken()->delete();
-            return $this->success('Logout realizado com sucesso.', [], Response::HTTP_NO_CONTENT);
-        } catch (\Exception) {
-            return $this->error('Erro ao fazer logout.', Response::HTTP_INTERNAL_SERVER_ERROR);
+            if (Auth::check()) {
+                $user = Auth::user()->currentAccessToken();
+                $user->delete();
+                return response()->json(['message' => 'Logout realizado com sucesso.'], Response::HTTP_NO_CONTENT);
+            } else {
+                return response()->json(['message' => 'Usuário não autenticado.'], Response::HTTP_UNAUTHORIZED);
+            }
+        } catch (\Exception $exception) {
+            return $this->error('Erro ao fazer logout.' . $exception, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

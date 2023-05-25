@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [AuthController::class, 'store']);
-Route::post('/logout', [AuthController::class, 'destroy']);
+Route::post('/logout', [AuthController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::post('/teams-draw', [TeamsDrawController::class, 'store']);
 
