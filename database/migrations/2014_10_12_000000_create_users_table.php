@@ -18,8 +18,10 @@ return new class extends Migration
             $table->enum('level', ['client', 'owner'])->default('client');
             $table->boolean('active')->default(true);
             $table->string('password');
-            $table->softDeletes();
+
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

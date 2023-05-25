@@ -16,11 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->enum('type', ['amistoso', 'rachinha']);
             $table->string('description')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-//            $table->foreign('local_id')->references('id')->on('local');
+            $table->foreign('local_id')->references('id')->on('local')->cascadeOnDelete();
         });
     }
 
