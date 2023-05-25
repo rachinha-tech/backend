@@ -4,6 +4,7 @@ use App\Http\Controllers\ConvenienceController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LocalController;
 use App\Http\Controllers\ModalityController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TeamsDrawController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\RegisterController;
@@ -48,5 +49,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('events')->group(function () {
         Route::get('/{id}', [EventController::class, 'show']);
         Route::post('/', [EventController::class, 'store']);
+    });
+
+    Route::prefix('schedules')->group(function () {
+        Route::get('/', [ScheduleController::class, 'index']);
+        Route::post('/', [ScheduleController::class, 'store']);
     });
 });
