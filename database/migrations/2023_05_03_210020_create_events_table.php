@@ -12,8 +12,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('local_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('schedule_id');
             $table->string('name');
-            $table->string('description');
+            $table->enum('type', ['amistoso', 'rachinha']);
+            $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
