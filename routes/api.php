@@ -21,6 +21,7 @@ Route::post('/teams-draw', [TeamsDrawController::class, 'store']);
 Route::prefix('modalities')->group(function () {
     Route::get('/', [ModalityController::class, 'index']);
     Route::post('/', [ModalityController::class, 'store']);
+    Route::patch('/', [ModalityController::class, 'update']);
 });
 
 Route::middleware('auth:sanctum')->group(function () {
