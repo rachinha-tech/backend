@@ -14,7 +14,7 @@ class StoreLocal
     {
         $user = Auth::user();
 
-        if($user->level !== 'owner') {
+        if ($user->level !== 'owner') {
             throw new \DomainException('Usuário não contém permissão para cadastrar um local.', Response::HTTP_UNAUTHORIZED);
         };
 
@@ -32,6 +32,7 @@ class StoreLocal
             'value_of_hour' => $data['value_of_hour'],
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
+            'proprietary_id' => $user->id,
 //            'convenience_id' => $data['convenience_id'],
         ]);
 

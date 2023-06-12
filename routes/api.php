@@ -20,6 +20,7 @@ Route::post('/teams-draw', [TeamsDrawController::class, 'store']);
 
 Route::prefix('modalities')->group(function () {
     Route::get('/', [ModalityController::class, 'index']);
+    Route::get('/{id}', [ModalityController::class, 'show']);
     Route::post('/', [ModalityController::class, 'store']);
     Route::patch('/', [ModalityController::class, 'update']);
 });
@@ -36,7 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('locals')->group(function () {
         Route::get('/', [LocalController::class, 'index']);
-        Route::get('/{id}', [LocalController::class, 'show']);
+        Route::get('/my', [LocalController::class, 'show']);
         Route::post('/', [LocalController::class, 'store']);
         Route::put('/{id}', [LocalController::class, 'update']);
         Route::delete('/{id}', [LocalController::class, 'destroy']);

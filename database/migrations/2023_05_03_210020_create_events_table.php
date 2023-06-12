@@ -21,7 +21,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('local_id')->references('id')->on('local')->cascadeOnDelete();
+            $table->foreign('local_id')->references('id')->on('locals');
         });
     }
 
