@@ -21,6 +21,7 @@ class LocalResource extends JsonResource
             "points_id" => $this->points_id,
             "modality" => $this->modality,
             "convenience" => $this->convenience,
+            "schedule" => $this->schedule,
         ];
     }
 }

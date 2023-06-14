@@ -37,14 +37,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('locals')->group(function () {
         Route::get('/', [LocalController::class, 'index']);
-        Route::get('/my', [LocalController::class, 'show']);
+        Route::get('/my', [LocalController::class, 'my']);
+        Route::get('/{id}', [LocalController::class, 'show']);
         Route::post('/', [LocalController::class, 'store']);
         Route::put('/{id}', [LocalController::class, 'update']);
         Route::delete('/{id}', [LocalController::class, 'destroy']);
     });
 
     Route::prefix('conveniences')->group(function () {
-        Route::get('/{id}', [ConvenienceController::class, 'show']);
+        Route::get('/', [ConvenienceController::class, 'show']);
         Route::post('/', [ConvenienceController::class, 'store']);
     });
 

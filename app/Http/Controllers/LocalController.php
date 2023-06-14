@@ -35,15 +35,26 @@ class LocalController extends Controller
             return $this->success('Local criado com sucesso.', $local);
         } catch (\DomainException $domainException) {
             return $this->error($domainException->getMessage(), $domainException->getCode());
-        } catch (\Exception) {
-            return $this->error('Erro ao criar local.', Response::HTTP_INTERNAL_SERVER_ERROR);
+        } catch (\Exception $e) {
+            return $this->error('Erro ao criar local.'.$e, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    public function show(ShowLocal $showLocal)
+    public function my(ShowLocal $showLocal): JsonResponse
     {
         try {
             return $this->success('Local listado com sucesso.', $showLocal->handle());
+        } catch (\DomainException $domainException) {
+            return $this->error($domainException->getMessage(), $domainException->getCode());
+        } catch (\Exception) {
+            return $this->error('Erro ao listar local.', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function show(int $id, ShowLocal $showLocal): JsonResponse
+    {
+        try {
+            return $this->success('Local listado com sucesso.', $showLocal->handle($id));
         } catch (\DomainException $domainException) {
             return $this->error($domainException->getMessage(), $domainException->getCode());
         } catch (\Exception) {

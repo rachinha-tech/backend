@@ -16,7 +16,7 @@ class UpdateLocalRequest extends FormRequest
         return [
             'name' => 'string',
             'description' => 'string',
-            'url_image' => 'string'
+//            'url_image' => 'string'
         ];
     }
 }
