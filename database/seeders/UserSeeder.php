@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             'picture' => 'https://images.freeimages.com/fic/images/icons/2526/bloggers/256/admin.png',
             'level' => 'owner',
             'active' => true,
-            'password' => bcrypt('adm12345'),
+            'password' => 'adm12345',
         ]);
     }
 }
