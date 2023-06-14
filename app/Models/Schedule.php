@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Event extends Model
+class Schedule extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
     protected $guarded = ['id'];
 
-    public function schedule(): HasOne
+    public function local(): HasOne
     {
-        return $this->hasOne(Schedule::class, 'schedule_id', 'id');
+        return $this->hasOne(Local::class, 'local_id', 'id');
     }
 }

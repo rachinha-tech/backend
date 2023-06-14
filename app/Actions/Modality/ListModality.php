@@ -9,6 +9,6 @@ class ListModality
 {
     public function handle(): Collection
     {
-        return Modality::query()->get();
+        return Modality::query()->orderBy('name')->get();
     }
 }

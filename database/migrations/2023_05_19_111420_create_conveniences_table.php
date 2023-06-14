@@ -14,6 +14,8 @@ return new class extends Migration {
 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('local_id')->references('id')->on('locals')->cascadeOnDelete();
         });
     }
 

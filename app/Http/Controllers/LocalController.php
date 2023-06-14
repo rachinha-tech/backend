@@ -10,6 +10,7 @@ use App\Actions\Local\UpdateLocal;
 use App\Http\Requests\Local\StoreLocalRequest;
 use App\Http\Requests\Local\UpdateLocalRequest;
 use App\Traits\ApiResponse;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -34,12 +35,23 @@ class LocalController extends Controller
             return $this->success('Local criado com sucesso.', $local);
         } catch (\DomainException $domainException) {
             return $this->error($domainException->getMessage(), $domainException->getCode());
-        } catch (\Exception $exception) {
-            return $this->error('Erro ao criar local.'.$exception, Response::HTTP_INTERNAL_SERVER_ERROR);
+        } catch (\Exception $e) {
+            return $this->error('Erro ao criar local.'.$e, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    public function show(int $id, ShowLocal $showLocal)
+    public function my(ShowLocal $showLocal): JsonResponse
+    {
+        try {
+            return $this->success('Local listado com sucesso.', $showLocal->handle());
+        } catch (\DomainException $domainException) {
+            return $this->error($domainException->getMessage(), $domainException->getCode());
+        } catch (\Exception) {
+            return $this->error('Erro ao listar local.', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function show(int $id, ShowLocal $showLocal): JsonResponse
     {
         try {
             return $this->success('Local listado com sucesso.', $showLocal->handle($id));

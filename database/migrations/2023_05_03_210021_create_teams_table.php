@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('event_id');
             $table->string('name');
             $table->string('url_image');
+
             $table->timestamps();
             $table->softDeletes();
 

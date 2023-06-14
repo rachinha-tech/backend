@@ -13,6 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_voted_id');
             $table->unsignedBigInteger('person_id');
             $table->enum('type', ['like', 'dislike']);
+
             $table->timestamps();
             $table->softDeletes();
         });

@@ -14,7 +14,7 @@ class TeamsDrawRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'modality_id' => 'required|integer',
+            'quantity_players' => 'required|integer',
             'quantity_teams' => 'required|integer',
             'players' => 'required|array',
         ];

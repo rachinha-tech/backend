@@ -25,4 +25,9 @@ class Local extends Model
     {
         return $this->hasMany(Convenience::class, 'local_id','id');
     }
+
+    public function schedule(): HasMany
+    {
+        return $this->hasMany(Schedule::class, 'local_id','id');
+    }
 }

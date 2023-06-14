@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Local;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateLocalRequest extends FormRequest
+class UpdateModalityRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,9 +14,8 @@ class UpdateLocalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string',
-            'description' => 'string',
-//            'url_image' => 'string'
+            'modality_id' => 'required|integer',
+            'quantity_players' => 'required|integer',
         ];
     }
 }

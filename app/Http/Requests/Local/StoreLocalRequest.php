@@ -16,11 +16,13 @@ class StoreLocalRequest extends FormRequest
         return [
             'name' => 'required|string',
             'description' => 'nullable|string',
-            'url_image' => 'nullable|string',
             'modality_id' => 'required|integer',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
             'value_of_hour' => 'required|numeric',
+            'schedule' => 'required|array',
+            'schedule.*.hours_minutes' => 'required|string',
+//            'latitude' => 'required|numeric',
+//            'longitude' => 'required|numeric',
+//            'url_image' => 'nullable|string',
         ];
     }
 }

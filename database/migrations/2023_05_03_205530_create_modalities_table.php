@@ -14,6 +14,7 @@ return new class extends Migration
             $table->integer('quantity_players');
             $table->string('url_image');
             $table->string('description');
+
             $table->timestamps();
             $table->softDeletes();
         });

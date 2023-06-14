@@ -14,13 +14,14 @@ class LocalResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "description" => $this->desciption,
+            "description" => $this->description,
             "url_image" => $this->url_image,
             "value_of_hour" => $this->value_of_hour,
             "modality_id" => $this->modality_id,
             "points_id" => $this->points_id,
             "modality" => $this->modality,
             "convenience" => $this->convenience,
+            "schedule" => $this->schedule,
         ];
     }
 }
