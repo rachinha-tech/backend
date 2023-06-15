@@ -1,0 +1,18 @@
+# Dockerfile
+
+FROM laravelsail/php82-composer:latest
+
+WORKDIR /var/www/html
+
+# Copiar arquivos do projeto
+COPY . .
+
+# Instalar dependências do Composer
+RUN composer install --ignore-platform-reqs
+
+# Executar os comandos de otimização e migração
+CMD ./vendor/bin/sail up -d && \
+    ./vendor/bin/sail artisan optimize && \
+    ./vendor/bin/sail artisan config:cache && \
+    ./vendor/bin/sail artisan migrate --force && \
+    ./vendor/bin/sail artisan db:seed
