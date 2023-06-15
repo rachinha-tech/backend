@@ -5,7 +5,7 @@ services:
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
             args:
-                - NIXPACKS_BUILD_CMD="docker run --rm \ -u "$(id -u):$(id -g)" \ -v "$(pwd):/var/www/html" \ -w /var/www/html \ laravelsail/php82-composer:latest \ composer install --ignore-platform-reqs && yarn && yarn prod && ./vendor/bin/sail up && php artisan optimize && php artisan config:cache && php artisan migrate --force && php artisan db:seed"
+                - NIXPACKS_BUILD_CMD="docker run --rm \ -u "$(id -u):$(id -g)" \ -v "$(pwd):/var/www/html" \ -w /var/www/html \ laravelsail/php82-composer:latest \ composer install --ignore-platform-reqs && ./vendor/bin/sail up && php artisan optimize && php artisan config:cache && php artisan migrate --force && php artisan db:seed"
                 - WWWGROUP=${WWWGROUP}
         image: sail-8.2/app
         extra_hosts:
