@@ -6,9 +6,7 @@ services:
   laravel.test:
     build:
       context: .
-      dockerfile: Dockerfile.build
-      args:
-        - WWWGROUP=${WWWGROUP}
+      dockerfile: Dockerfile
     image: sail-8.2/app
     extra_hosts:
       - 'host.docker.internal:host-gateway'
@@ -27,7 +25,6 @@ services:
     depends_on:
       - pgsql
       - redis
-    command: sh -c "chmod +x /start.sh && /start.sh"
 
   pgsql:
     image: 'postgres:15'
