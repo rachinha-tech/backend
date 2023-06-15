@@ -1,8 +1,11 @@
 version: '3'
 services:
     laravel.test:
+        build:
+            context: ./vendor/laravel/sail/runtimes/8.2
+            dockerfile: Dockerfile
             args:
-                - NIXPACKS_BUILD_CMD="composer install --ignore-platform-reqs && yarn && yarn prod && ./vendor/bin/sail up && php artisan optimize && php artisan config:cache && php artisan migrate --force && php artisan db:seed"
+                - BUILD_CMD="docker run --rm -u \"$(id -u):$(id -g)\" -v \"$(pwd):/var/www/html\" -w /var/www/html laravelsail/php82-composer:latest composer install --ignore-platform-reqs && ./vendor/bin/sail up && sail artisan optimize && sail artisan config:cache && sail artisan migrate --force && sail artisan db:seed"
                 - WWWGROUP=${WWWGROUP}
         image: sail-8.2/app
         extra_hosts:
@@ -22,7 +25,6 @@ services:
         depends_on:
             - pgsql
             - redis
-        command: sh -c "${BUILD_CMD}"
     pgsql:
         image: 'postgres:15'
         ports:
