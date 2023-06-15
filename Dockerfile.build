@@ -1,4 +1,4 @@
-# Dockerfile.build
+# Dockerfile
 
 FROM laravelsail/php82-composer:latest
 
@@ -13,3 +13,5 @@ RUN composer install --ignore-platform-reqs
 # Definir permissões para o script de inicialização
 RUN chmod +x /start.sh
 
+# Executar comandos ao iniciar o contêiner
+CMD ["sh", "-c", "./start.sh"]
