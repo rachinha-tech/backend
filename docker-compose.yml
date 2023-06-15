@@ -5,7 +5,7 @@ services:
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
             args:
-                - BUILD_CMD="composer install --ignore-platform-reqs && ./vendor/bin/sail up && sail artisan optimize && sail artisan config:cache && sail artisan migrate --force && sail artisan db:seed"
+                - BUILD_CMD="composer install --ignore-platform-reqs && ./vendor/bin/sail up && ./vendor/bin/sail artisan optimize && ./vendor/bin/sail artisan config:cache && ./vendor/bin/sail artisan migrate --force && ./vendor/bin/sail artisan db:seed"
                 - WWWGROUP=${WWWGROUP}
         image: sail-8.2/app
         extra_hosts:
