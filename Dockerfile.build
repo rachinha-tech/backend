@@ -12,3 +12,4 @@ RUN composer install --ignore-platform-reqs
 
 # Definir permissões para o script de inicialização
 RUN chmod +x /start.sh
+
