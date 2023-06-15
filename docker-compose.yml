@@ -1,8 +1,6 @@
 version: '3'
 services:
     laravel.test:
-        build:
-            context: ./vendor/laravel/sail/runtimes/8.2
             args:
                 - NIXPACKS_BUILD_CMD="composer install --ignore-platform-reqs && yarn && yarn prod && ./vendor/bin/sail up && php artisan optimize && php artisan config:cache && php artisan migrate --force && php artisan db:seed"
                 - WWWGROUP=${WWWGROUP}
