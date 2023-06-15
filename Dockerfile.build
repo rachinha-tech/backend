@@ -1,0 +1,14 @@
+# Dockerfile.build
+
+FROM laravelsail/php82-composer:latest
+
+WORKDIR /var/www/html
+
+# Copiar arquivos do projeto
+COPY . .
+
+# Instalar dependências do Composer
+RUN composer install --ignore-platform-reqs
+
+# Definir permissões para o script de inicialização
+RUN chmod +x /start.sh
