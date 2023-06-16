@@ -25,6 +25,18 @@
 ### Start em containers docker, do projeto
     $ ./vendor/bin/sail up -d
 
+### Permissão de usuário
+    $ sudo chown -R $USER: .
+
+### Permissão para storage
+    $ sudo chmod -R 777 /storage
+
+### Permissão para escrever no .env
+    $ sudo chmod -R 777 .env
+
+### Gerar Key
+    $ sudo ./vendor/bin/sail artisan key:generate
+
 ### Você pode criar um alias para o comando do sail adicionando a seguinte linha no seu arquivo ```~/.bashrc```
     $ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
     
