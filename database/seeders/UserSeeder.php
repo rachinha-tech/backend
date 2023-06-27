@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
             'login' => 'admin',
             'date_birth' => '1990-02-20',
             'email' => 'admin@rechinha.com',
-            'picture' => 'https://images.freeimages.com/fic/images/icons/2526/bloggers/256/admin.png',
+            //'picture' => 'https://images.freeimages.com/fic/images/icons/2526/bloggers/256/admin.png',
             'level' => 'owner',
             'active' => true,
             'password' => 'adm12345',
