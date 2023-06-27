@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('login')->unique();
             $table->string('date_birth');
             $table->string('email')->unique();
-            $table->string('picture')->unique();
+            //$table->string('picture')->unique();
             $table->enum('level', ['client', 'owner'])->default('client');
             $table->boolean('active')->default(true);
             $table->string('password');
