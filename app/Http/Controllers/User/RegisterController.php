@@ -19,8 +19,8 @@ class RegisterController extends Controller
             $registerUser->handle($request->validated());
 
             return $this->success('Usuário registrado com sucesso!', []);
-        } catch (\Exception $e) {
-            return $this->error('Erro ao registrar usuário' .$e, Response::HTTP_INTERNAL_SERVER_ERROR);
+        } catch (\Exception) {
+            return $this->error('Erro ao registrar usuário', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }

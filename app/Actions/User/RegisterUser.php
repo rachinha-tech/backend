@@ -15,6 +15,7 @@ class RegisterUser
             'login' => $data['login'],
             'name' => $data['name'],
             'date_birth' => $data['date_birth'],
+            'level' => $data['level'],
             //'picture' => $data['picture'],
             'password' => $data['password'],
             'password_confirmation' => $data['password_confirmation'],

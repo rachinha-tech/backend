@@ -18,6 +18,7 @@ class RegisterUserRequest extends FormRequest
             'login' => 'required|string',
             'name' => 'required|string',
             'date_birth' => 'required|date',
+            'level' => 'required|string',
             //'picture' => 'required|string',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password'

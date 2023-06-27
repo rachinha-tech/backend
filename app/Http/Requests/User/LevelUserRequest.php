@@ -14,7 +14,6 @@ class LevelUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-//            'level' => 'required|in:client,owner',
               'level'=> 'required|string'
         ];
     }

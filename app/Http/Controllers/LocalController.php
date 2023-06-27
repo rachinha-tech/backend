@@ -35,8 +35,8 @@ class LocalController extends Controller
             return $this->success('Local criado com sucesso.', $local);
         } catch (\DomainException $domainException) {
             return $this->error($domainException->getMessage(), $domainException->getCode());
-        } catch (\Exception $e) {
-            return $this->error('Erro ao criar local.'.$e, Response::HTTP_INTERNAL_SERVER_ERROR);
+        } catch (\Exception) {
+            return $this->error('Erro ao criar local.', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
